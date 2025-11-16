@@ -169,7 +169,7 @@ export function ChatScreen({
           <div className="flex justify-between items-center mb-3">
             <button
               onClick={() => onNavigate(isSeller ? "profile" : "detail")}
-              className="h-10 px-4 py-2 inline-flex items-center justify-center rounded-md text-sm font-medium hover:bg-accent hover:text-accent-foreground -ml-4"
+              className="h-10 px-4 py-2 inline-flex items-center justify-center rounded-md text-sm font-medium hover:bg-gray-100 transition-colors -ml-4"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
               Volver
