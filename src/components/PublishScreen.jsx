@@ -5,10 +5,14 @@ import { Upload, ArrowLeft, Check, Loader2 } from "lucide-react";
 import { db, storage, auth } from "../firebase";
 import { addDoc, collection, serverTimestamp, doc, setDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { useProvinces } from "../hooks/useProvinces";
 
 export function PublishScreen({ user, onNavigate, productToEdit }) {
   
   const isEditMode = !!productToEdit;
+
+  // Provincias desde la API de Georef (o fallback interno del hook)
+  const { provinces, loading: provincesLoading, error: provincesError } = useProvinces();
 
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -41,9 +45,11 @@ export function PublishScreen({ user, onNavigate, productToEdit }) {
 
   const categories = ["Placas Base", "Memoria RAM", "Tarjetas Gráficas", "Procesadores", "Almacenamiento", "Teclados", "Otros"];
   const conditions = ["Nuevo", "Funcional", "Para Repuestos"];
-  // --- ARREGLO AQUÍ ---
-  const locations = ["Córdoba, Capital", "Buenos Aires", "Rosario", "Mendoza", "Tucumán", "Jujuy"];
-  // --- FIN DE ARREGLO ---
+
+  // Ubicaciones basadas en la API; si falla, usamos valores fijos como antes
+  const locations = provinces.length > 0
+    ? provinces
+    : ["Córdoba, Capital", "Buenos Aires", "Rosario", "Mendoza", "Tucumán", "Jujuy"];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
