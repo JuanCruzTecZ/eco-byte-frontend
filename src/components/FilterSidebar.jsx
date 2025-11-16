@@ -1,6 +1,7 @@
 // En: src/components/FilterSidebar.jsx
 
 import { useState } from 'react';
+import { useProvinces } from '../hooks/useProvinces';
 
 export function FilterSidebar({ filters, onFilterChange }) {
   const categories = [
@@ -20,17 +21,26 @@ export function FilterSidebar({ filters, onFilterChange }) {
     { id: "repuestos", label: "Para Repuestos" }
   ];
 
-  // --- ARREGLO AQUÍ ---
+  // Provincias desde la API (o fallback interno del hook)
+  const { provinces } = useProvinces();
+
+  // Estado para buscar ubicaciones
+  const [locationQuery, setLocationQuery] = useState("");
+
+  // Ubicaciones: si la API responde usamos provincias; si no, los valores anteriores
+  const baseLocations = provinces.length > 0
+    ? provinces
+    : ["Córdoba, Capital", "Buenos Aires", "Rosario", "Mendoza", "Tucumán", "Jujuy"];
+
   const locations = [
     "Todas las Ubicaciones",
-    "Córdoba, Capital",
-    "Buenos Aires",
-    "Rosario",
-    "Mendoza",
-    "Tucumán",
-    "Jujuy"
+    ...baseLocations
   ];
-  // --- FIN DE ARREGLO ---
+
+  const filteredLocations = locations.filter((loc) =>
+    loc === "Todas las Ubicaciones" ||
+    loc.toLowerCase().includes(locationQuery.toLowerCase())
+  );
 
   const handleCategoryChange = (value) => {
     onFilterChange({ ...filters, category: value });
@@ -116,8 +126,17 @@ export function FilterSidebar({ filters, onFilterChange }) {
 
       <div className="space-y-3">
         <label className="text-sm font-medium text-[#333333]">Ubicación</label>
-        <div className="space-y-2">
-          {locations.map((location) => (
+        {/* Buscador de ubicaciones */}
+        <input
+          type="text"
+          placeholder="Buscar provincia..."
+          value={locationQuery}
+          onChange={(e) => setLocationQuery(e.target.value)}
+          className="w-full h-9 rounded-md border border-input bg-surface px-3 py-1 text-sm mb-2 focus:outline-none focus:ring-2 focus:ring-primary/50"
+        />
+        {/* Lista con scroll */}
+        <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
+          {filteredLocations.map((location) => (
             <div key={location} className="flex items-center space-x-2">
               <input
                 type="radio"

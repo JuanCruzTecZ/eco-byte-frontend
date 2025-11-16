@@ -13,7 +13,7 @@ export function Header({ isLoggedIn, notificationCount, onNavigate, onSearch, se
   };
 
   return (
-    <header className="border-b bg-white sticky top-0 z-50">
+    <header className="border-b bg-white/95 backdrop-blur sticky top-0 z-50">
       <div className="w-full pr-8 pl-6 py-4">
         <div className="flex items-center justify-between gap-8">
           
@@ -21,7 +21,10 @@ export function Header({ isLoggedIn, notificationCount, onNavigate, onSearch, se
             onClick={() => onNavigate("catalog")}
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
-            <span className="text-2xl font-semibold text-[#333333]">Eco Byte</span>
+            {/* Marca principal en verde Eco Byte */}
+            <span className="text-2xl font-semibold text-primary tracking-tight">
+              Eco Byte
+            </span>
             <img 
               src="/logo.jpg" 
               alt="Eco Byte Logo" 
@@ -45,7 +48,7 @@ export function Header({ isLoggedIn, notificationCount, onNavigate, onSearch, se
               <>
                 <button
                   onClick={() => onNavigate("publish")}
-                  className="bg-primary hover:bg-[#89DA59] text-white rounded-md h-10 px-4 py-2 flex items-center transition-colors"
+                  className="bg-primary hover:bg-primary-dark text-primary-foreground rounded-md h-10 px-4 py-2 flex items-center shadow-sm transition-colors"
                 >
                   <Plus className="w-4 h-4 mr-2" />
                   Publicar
@@ -54,7 +57,7 @@ export function Header({ isLoggedIn, notificationCount, onNavigate, onSearch, se
                 <div className="relative">
                   <button
                     onClick={() => onNavigate("profile")}
-                    className="border border-input bg-background hover:bg-gray-100 rounded-md h-10 w-10 flex items-center justify-center transition-colors"
+                    className="border border-input bg-background hover:bg-surface rounded-md h-10 w-10 flex items-center justify-center transition-colors"
                   >
                     <User className="w-5 h-5" />
                   </button>
@@ -68,8 +71,8 @@ export function Header({ isLoggedIn, notificationCount, onNavigate, onSearch, se
 
                 <button
                   onClick={handleLogout}
-                  className="border border-input bg-background hover:bg-gray-100 rounded-md h-10 px-4 py-2 transition-colors"
-                  >
+                  className="border border-input bg-background hover:bg-surface rounded-md h-10 px-4 py-2 transition-colors"
+                >
                   Salir
                 </button>
               </>
@@ -77,13 +80,13 @@ export function Header({ isLoggedIn, notificationCount, onNavigate, onSearch, se
               <>
                 <button
                   onClick={() => onNavigate("login")}
-                  className="border border-input bg-background hover:bg-gray-100 rounded-md h-10 px-4 py-2 transition-colors"
+                  className="border border-input bg-background hover:bg-surface rounded-md h-10 px-4 py-2 transition-colors"
                 >
                   Iniciar Sesión
                 </button>
                 <button
                   onClick={() => onNavigate("register")}
-                  className="bg-primary hover:bg-[#89DA59] text-white rounded-md h-10 px-4 py-2 transition-colors"
+                  className="bg-primary hover:bg-primary-dark text-primary-foreground rounded-md h-10 px-4 py-2 shadow-sm transition-colors"
                 >
                   Registrarse
                 </button>

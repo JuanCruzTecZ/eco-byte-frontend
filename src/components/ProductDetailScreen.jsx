@@ -88,11 +88,11 @@ export function ProductDetailScreen({ product, onNavigate, onStartChat, currentU
           
           <div>
             <div className="overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm">
-              <div className="relative aspect-square bg-[#F5F5F5]">
+              <div className="relative aspect-square bg-[#F5F5F5] flex items-center justify-center">
                 <ImageWithFallback
                   src={images[currentImageIndex]}
                   alt={product.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
                 
                 {images.length > 1 && (

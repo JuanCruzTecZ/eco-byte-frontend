@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Estilo global para inputs (radios y checkboxes) con acento verde Eco Byte */
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: #8FAD88; /* brand-fern / primary */
+}
