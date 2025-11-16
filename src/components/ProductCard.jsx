@@ -59,27 +59,25 @@ export function ProductCard({ product, onClick, onDelete, onEdit }) {
         </div>
       )}
       
-      <div className="aspect-square overflow-hidden bg-[#F5F5F5]">
+      <div className="aspect-square overflow-hidden bg-[#F5F5F5] flex items-center justify-center">
         <ImageWithFallback
           src={product.image}
           alt={product.title}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
         />
       </div>
-      <div className="p-4 space-y-3">
-        <div>
-          <h3 className="text-[#333333] line-clamp-2 mb-2">{product.title}</h3>
-          <p className="text-primary">$ {product.price.toLocaleString()}</p>
-        </div>
-        <div className="flex items-center justify-between gap-2">
+      <div className="p-4 flex flex-col h-[180px]">
+        <h3 className="text-[#333333] line-clamp-2 mb-2 min-h-[3rem] max-h-[3rem]">{product.title}</h3>
+        <p className="text-primary font-semibold mb-4">$ {product.price.toLocaleString()}</p>
+        <div className="flex flex-col gap-2 mt-auto">
           <span
-            className={`rounded-sm text-xs font-semibold px-2.5 py-0.5 ${getConditionColor(product.condition)}`}
+            className={`rounded-sm text-xs font-semibold px-2.5 py-0.5 w-fit ${getConditionColor(product.condition)}`}
           >
             {product.condition}
           </span>
-          <div className="flex items-center gap-1 text-muted-foreground text-sm">
-            <MapPin className="w-3.5 h-3.5" />
-            <span className="truncate">{product.location}</span>
+          <div className="flex items-center gap-1 text-muted-foreground text-sm flex-wrap">
+            <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
+            <span className="break-words">{product.location}</span>
           </div>
         </div>
       </div>

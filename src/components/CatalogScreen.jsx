@@ -75,7 +75,7 @@ export function CatalogScreen({
       <FilterSidebar filters={filters} onFilterChange={onFilterChange} />
       
       <div className="flex-1 p-8">
-        <div className="max-w-[1200px] mx-auto">
+        <div className="max-w-[1000px] mx-auto">
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-[#333333] mb-2">Componentes Disponibles</h2>
             {!productsLoading && (
